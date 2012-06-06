@@ -32,6 +32,7 @@ function love.load()
   rectW, rectH = modeX/rows, modeY/cols
   world = life.build(grid)
   love.graphics.setMode(modeX, modeY)
+  love.graphics.setColor(255, 100, 100)
 end
 function love.update(dt)
   throttle = throttle + dt

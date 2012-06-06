@@ -39,6 +39,17 @@ function testEightNeighbors()
   assert_equal(8, result)
 end
 
+function testEightNeighbors()
+  grid = {
+    {1,0,0,1},
+    {0,0,0,1},
+    {0,0,0,1}
+  }
+  local world = life.build(grid)
+  local result = world:neighbors(2,1)
+  assert_equal(4, result)
+end
+
 function testZeroNeighborsDies()
   grid = {
     {0,0,0,0},
@@ -115,7 +126,7 @@ function testUpdate()
   world:update()
   assert_equal(1, world.grid[2][2])
   assert_equal(1, world.grid[1][3])
-  assert_equal(0, world.grid[1][1])
+  assert_equal(1, world.grid[1][1])
 end
 
 function testPlot()
@@ -128,4 +139,19 @@ function testPlot()
   local world = life.build(grid)
   local result = world:plot()
   assert_equal(expected, result)
+end
+
+function testToroidalIndexLowerBound()
+  local result = world.toroidalIndex(0, 5)
+  assert_equal(5, result)
+end
+
+function testToroidalIndexUpperBound()
+  local result = world.toroidalIndex(6, 5)
+  assert_equal(1, result)
+end
+
+function testToroidalIndexWithinBounds()
+  local result = world.toroidalIndex(3, 5)
+  assert_equal(3, result)
 end
