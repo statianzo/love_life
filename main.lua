@@ -103,7 +103,7 @@ function love.load()
   rows, cols = #grid, #grid[1]
   rectW, rectH = modeX/rows, modeY/cols
   world = life.build(grid)
-  love.graphics.setMode(modeX, modeY)
+  love.window.setMode(modeX, modeY)
   love.graphics.setColor(255, 100, 100)
 end
 function love.update(dt)
